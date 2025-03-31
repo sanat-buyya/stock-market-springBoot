@@ -1,8 +1,13 @@
 package org.jsp.stock.dto;
  
  import java.time.LocalDate;
- 
- import jakarta.validation.constraints.DecimalMax;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
+import jakarta.validation.constraints.DecimalMax;
  import jakarta.validation.constraints.DecimalMin;
  import jakarta.validation.constraints.Email;
  import jakarta.validation.constraints.NotEmpty;
@@ -11,7 +16,11 @@ package org.jsp.stock.dto;
  import jakarta.validation.constraints.Pattern;
  import jakarta.validation.constraints.Size;
 
+ @Entity
  public class User {
+	 @Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private int id;
 		@Size(min = 3, max = 15, message = "* It Should be between 3~15 charecters")
 		private String name;
 		@Email(message = "* It Should be Valid Email")
@@ -23,10 +32,19 @@ package org.jsp.stock.dto;
 		@Past(message = "* Enter Proper DOB")
 		@NotNull(message = "* It is Required Field")
 		private LocalDate dob;
-		@Pattern(regexp = "^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$",message = "* It should be One Uppercase, One Lowercase, One Number, One Special Chrecter,Minium 8 charecters")
+		@Pattern(regexp = "^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$", message = "* It should be One Uppercase, One Lowercase, One Number, One Special Chrecter,Minium 8 charecters")
 		private String password;
-		@Pattern(regexp = "^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$",message = "* It should be One Uppercase, One Lowercase, One Number, One Special Chrecter,Minium 8 charecters")
+		@Transient
+		@Pattern(regexp = "^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$", message = "* It should be One Uppercase, One Lowercase, One Number, One Special Chrecter,Minium 8 charecters")
 		private String confirmPassword;
+		private int otp;
+		private boolean verified;
+		public int getId() {
+			return id;
+		}
+		public void setId(int id) {
+			this.id = id;
+		}
 		public String getName() {
 			return name;
 		}
@@ -63,12 +81,24 @@ package org.jsp.stock.dto;
 		public void setConfirmPassword(String confirmPassword) {
 			this.confirmPassword = confirmPassword;
 		}
+		public int getOtp() {
+			return otp;
+		}
+		public void setOtp(int otp) {
+			this.otp = otp;
+		}
+		public boolean isVerified() {
+			return verified;
+		}
+		public void setVerified(boolean verified) {
+			this.verified = verified;
+		}
 		@Override
 		public String toString() {
-			return "User [name=" + name + ", email=" + email + ", mobile=" + mobile + ", dob=" + dob + ", password="
-					+ password + ", confirmPassword=" + confirmPassword + "]";
+			return "User [id=" + id + ", name=" + name + ", email=" + email + ", mobile=" + mobile + ", dob=" + dob
+					+ ", password=" + password + ", confirmPassword=" + confirmPassword + ", otp=" + otp + ", verified="
+					+ verified + "]";
 		}
-		
-	}
+ }
  	
  

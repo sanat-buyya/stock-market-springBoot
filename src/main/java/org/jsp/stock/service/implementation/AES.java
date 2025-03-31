@@ -1,4 +1,3 @@
-
 package org.jsp.stock.service.implementation;
 
 import java.security.MessageDigest;
@@ -12,7 +11,6 @@ public class AES {
 
 	private static SecretKeySpec secretKey;
 	private static byte[] key;
-	private static String secret="123";
 
 	public static void setKey(final String myKey) {
 		MessageDigest sha = null;
@@ -27,7 +25,7 @@ public class AES {
 		}
 	}
 
-	public static String encrypt(final String strToEncrypt) {
+	public static String encrypt(final String strToEncrypt, final String secret) {
 		try {
 			setKey(secret);
 			Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
@@ -39,7 +37,7 @@ public class AES {
 		return null;
 	}
 
-	public static String decrypt(final String strToDecrypt) {
+	public static String decrypt(final String strToDecrypt, final String secret) {
 		try {
 			setKey(secret);
 			Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
