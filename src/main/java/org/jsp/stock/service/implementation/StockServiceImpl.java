@@ -1,4 +1,3 @@
-
 package org.jsp.stock.service.implementation;
 
 import java.time.LocalDate;
@@ -223,5 +222,22 @@ public class StockServiceImpl implements StockService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public String fetchStocks(HttpSession session, Model model) {
+		if (session.getAttribute("admin") != null) {
+			List<Stock> stocks = stockRepository.findAll();
+			if (stocks.isEmpty()) {
+				session.setAttribute("fail", "No Stocks PResent");
+				return "redirect:/";
+			} else {
+				model.addAttribute("stocks", stocks);
+				return "admin-view-stocks.html";
+			}
+		} else {
+			session.setAttribute("fail", "Invalid Session, Login First");
+			return "redirect:/login";
+		}
 	}
 }
