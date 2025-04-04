@@ -39,6 +39,7 @@ public class User {
 	private String confirmPassword;
 	private int otp;
 	private boolean verified;
+	private double amount;
 	public int getId() {
 		return id;
 	}
@@ -93,11 +94,19 @@ public class User {
 	public void setVerified(boolean verified) {
 		this.verified = verified;
 	}
+	
+	public double getAmount() {
+		return amount;
+	}
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", mobile=" + mobile + ", dob=" + dob
 				+ ", password=" + password + ", confirmPassword=" + confirmPassword + ", otp=" + otp + ", verified="
-				+ verified + "]";
+				+ verified + ", amount=" + amount + "]";
 	}
 	
-}
+	}
+	

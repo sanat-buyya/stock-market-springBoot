@@ -3,23 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>This is OTP Page</h1>
-	
-	<div>
-			<h3 style="color:green" th:text="${session.pass}"></h3>
-			<h3 style="color:red" th:text="${session.fail}"></h3>
-			<span th:text="${@stockServiceImpl.removeMessage()}"></span>
-		</div>
-	
-	<form action="/otp" method="post">
-		<<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StockMarket - OTP Verification</title>
     <style>
         :root {
@@ -234,10 +217,5 @@
             <p>&copy; 2023 StockMarket. All rights reserved.</p>
         </div>
     </footer>
-</body>
-</html> type="hidden" name="id" th:value="${id}">
-		<input type="text" name="otp" placeholder="Enter Otp"><br>
-		<button>Submit</button>
-	</form>
 </body>
 </html>
