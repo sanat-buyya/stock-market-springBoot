@@ -1,3 +1,4 @@
+
 package org.jsp.stock.service;
 
 import org.jsp.stock.dto.Stock;
@@ -42,5 +43,7 @@ public interface StockService {
 	String buyStock(String ticker, double quantity, HttpSession session, Model model);
 
 	String confirmPurchase(HttpSession session, String ticker, double quantity, double price);
+
+	String viewOverview(HttpSession session, Model model);
 
 }

@@ -1,11 +1,16 @@
 package org.jsp.stock.dto;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Transient;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
@@ -15,7 +20,13 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@ToString
 @Entity
 public class User {
 	@Id
@@ -39,74 +50,106 @@ public class User {
 	private String confirmPassword;
 	private int otp;
 	private boolean verified;
+
 	private double amount;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	List<UserStocksTransaction> transactions=new ArrayList<>();
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public long getMobile() {
 		return mobile;
 	}
+
 	public void setMobile(long mobile) {
 		this.mobile = mobile;
 	}
+
 	public LocalDate getDob() {
 		return dob;
 	}
+
 	public void setDob(LocalDate dob) {
 		this.dob = dob;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public String getConfirmPassword() {
 		return confirmPassword;
 	}
+
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
 	}
+
 	public int getOtp() {
 		return otp;
 	}
+
 	public void setOtp(int otp) {
 		this.otp = otp;
 	}
+
 	public boolean isVerified() {
 		return verified;
 	}
+
 	public void setVerified(boolean verified) {
 		this.verified = verified;
 	}
-	
+
 	public double getAmount() {
 		return amount;
 	}
+
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
+
+	public List<UserStocksTransaction> getTransactions() {
+		return transactions;
+	}
+
+	public void setTransactions(List<UserStocksTransaction> transactions) {
+		this.transactions = transactions;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", mobile=" + mobile + ", dob=" + dob
 				+ ", password=" + password + ", confirmPassword=" + confirmPassword + ", otp=" + otp + ", verified="
-				+ verified + ", amount=" + amount + "]";
+				+ verified + ", amount=" + amount + ", transactions=" + transactions + "]";
 	}
 	
-	}
 	
+}
